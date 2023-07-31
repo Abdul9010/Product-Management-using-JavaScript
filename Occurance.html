@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="msg2" style="border: 1px solid;">
+        Password <input type="text" onpaste="return onpastehandler()" oncopy="return oncopyhandler()" id="password"
+            placeholder="enter password"><br><br>
+        Conform Password <input type="text" onpaste="return onpastehandler()" oncopy="return oncopyhandler()"
+            id="conformp" placeholder="Conform password">
+
+        <h2 id="msg" style="color: red;"></h2>
+
+
+        <h2 id="h2" style="color: red;"></h2>
+    </div>
+    <script>
+        var msg = document.getElementById("msg");
+        function oncopyhandler() {
+            msg.innerHTML = "copy is disabled";
+            return false;
+        }
+
+        function onpastehandler() {
+            msg.innerHTML = "paste is disabled";
+            return false;
+        }
+
+        const div = document.getElementById("msg2");
+        div.addEventListener("contextmenu", (e) => { e.preventDefault() });
+        var h2= document.getElementById("h2");
+        h2.innerHTML = "right click is disabled";
+
+    </script>
+
+</body>
+
+</html>
+
+</html>

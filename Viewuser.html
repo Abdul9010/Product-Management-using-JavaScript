@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View User</title>
+
+    <style>
+        div {
+            border: 3px solid;
+            background-color: whitesmoke;
+        }
+
+        p {
+            text-align: center;
+
+        }
+
+        .div1 {
+            background-color: powderblue;
+            width: 51px;
+
+            margin: 7px;
+
+        }
+
+
+        .div3 {
+            background-color: powderblue;
+            width: 45px;
+
+            margin: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Edit User</h2><br>
+        <form id="form" .action="">
+            <p>
+                UserID <input type="email" id="email" placeholder="User ID (Email Id)"><br><br>
+                FirstName <input type="text" id="fname" placeholder="FirstName"><br><br>
+                Lastname <input type="text" id="lname" placeholder="LastName"><br><br>
+            </p>
+        </form>
+        <div class="div1">
+            <button onclick="Active()">Active</button>
+        </div>
+
+        <div class="div3">
+            <a href="./Usermanagement1.html">
+                <button>Back</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function Active() {
+            
+            var details = [];
+            var detail = (localStorage.getItem('keyarray'));
+            detail = JSON.parse(detail);
+
+            details.push(detail);
+            
+            var email = document.getElementById("email").value;
+
+            var index = 0;
+            console.log(email);
+            console.log(details);
+            console.log(detail[index].Mail);
+
+            if ( email == detail[index].Mail){
+
+           var Mail =  document.getElementById("email");
+            var fname = document.getElementById("fname");
+            var lname = document.getElementById("lname");
+
+            Mail.value = detail[index].Mail;
+            fname.value = detail[index].Fullname;
+            lname.value = detail[index].Lastname;
+
+            index++;
+            }
+        }
+        Active();
+
+    </script>
+</body>
+
+</html>

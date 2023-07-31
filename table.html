@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1" width="100%" style="text-align: center; background-color: pink;">
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <script>
+
+        var customers = [{ id: 101, name: "rohan", Accountnumber: 1525101, Balance : 50000 }, 
+                        { id: 102, name: "ayaan", Accountnumber: 1525102, Balance : 2500}, 
+                        { id: 103, name: "vicky", Accountnumber: 1525103, Balance : 1720 }, 
+                        { id: 104, name: "altaf", Accountnumber: 1525104, Balance : 15523 }];
+
+        var keys = Object.keys(customers[0]);
+
+        var headarray = keys.map(function (key) {
+            return "<th>" + key + "</th>";
+        })
+
+        headarray = headarray.toString().replaceAll(",", "");
+        document.getElementById("thead").innerHTML = headarray;
+
+        var final = " ";
+
+        customers.forEach(customer => {
+            var array = Object.values(customer);
+
+            var result = array.map(function (value) {
+                return "<td>" + value + "</td>";
+            })
+
+            result = result.toString().replaceAll(",", "");
+            result = "<tr>" + result + "</tr>";
+
+            final = final + result;
+        })
+
+        document.getElementById("tbody").innerHTML = final;
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      //server side
+     var promise = new Promise((resolve, reject) => {
+      isPromisefullfilled = true;
+      if(isPromisefullfilled){
+        resolve({username : "Ayaan", address : "Hyd"})
+      } else {
+        reject("i have reected");
+      }
+     });
+     console.log(promise);
+     //client side
+     promise.then(function(response){
+      console.log("fulfilled");
+      console.log(response);
+     },
+     function (error){
+      console.log("rejected");
+      console.log(error);
+     })
+       </script>
+</body>
+</html>

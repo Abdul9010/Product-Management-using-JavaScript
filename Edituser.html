@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit USer</title>
+    
+    <style>
+        div {
+            border: 3px solid;
+            background-color: whitesmoke;
+        }
+
+        p {
+            text-align: center;
+
+        }
+
+        .div1 {
+            background-color: powderblue;
+            width: 62px;
+
+            margin: 7px;
+
+        }
+
+        .div2 {
+
+            background-color: powderblue;
+            width: 55px;
+
+            margin: 7px;
+
+
+        }
+
+        .div3 {
+            background-color: powderblue;
+            width: 55px;
+
+            margin: 7px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Edit User</h2><br>
+        <form id="form" .action="">
+            <p>
+                UserID <input type="email" id="email" placeholder="User ID (Email Id)"> <br><br>
+                FirstName <input type="text" id="fname" placeholder="FirstName"><br><br>
+                Lastname <input type="text" id="lname" placeholder="LastName"><br><br>
+            </p>
+        </form>
+        <div class="div1">
+            <button>Activate</button>
+        </div>
+        <div class="div2">
+            <button id="addorsave" onclick="update()">update</button>
+        </div>
+        <div class="div3">
+            <a href="./Usermanagement1.html">
+                <button>Cancel</button>
+            </a>
+        </div>
+
+        <h4 id="use"></h4>
+    </div>
+
+    <script>
+
+        function update(){
+           
+            var details = (localStorage.getItem('keyarray'));
+            detail = JSON.parse(details);
+
+            var email = detail[0].Mail;
+            var name = detail[0].Fullname;
+            var lname = detail[0].Lastname;
+
+            document.getElementById("email").value = email;
+            document.getElementById("fname").value = name;
+            document.getElementById("lname").value = lname;
+            
+            console.log(email);
+            console.log(name);
+            console.log(lname);
+
+
+           
+
+      
+        }
+
+            // var index = 0;
+            // while(index < detail.length){
+                
+              
+                
+            //     document.getElementById("email").value = email;
+            //     document.getElementById("fname").value = name;
+            //     document.getElementById("lname").value = lname;
+
+            //     var detail = {
+            //         email : email,
+            //         fname : name,
+            //         lname : lname
+            //     }
+
+            // }
+            // index++;
+
+            var addorsave = document.getElementById("addorsave");
+            addorsave.innerHTML = "Save";
+            addorsave.removeAttribute("onclick");
+            addorsave.setAttribute('onclick', "save()");
+       
+        
+        update();
+
+        function save(){
+            var details = [];
+
+           
+
+
+            var emailar = document.getElementById("email").value;
+            var namear =  document.getElementById("fname").value;
+            var lnamear = document.getElementById("lname").value;
+            var detail = {
+                    email : emailar,
+                    fname : namear,
+                    lname : lnamear
+                }
+
+                console.log(detail);
+            details.push(detail);
+
+            console.log( "updated value" + emailar);
+            console.log("updated "+ namear);
+            console.log("updated" + lnamear);
+
+            
+            
+
+            var addorsave = document.getElementById("addorsave");
+            addorsave.innerHTML = "update";
+            addorsave.removeAttribute("onclick");
+            addorsave.setAttribute('onclick', "update()");
+            document.getElementById("form").reset();
+            
+        }
+        save();
+
+        
+
+    </script>
+</body>
+</html>

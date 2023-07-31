@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Time</title>
+</head>
+<body>
+    <label for="name">Name</label>
+    <input type="text" id="name" ><br><br>
+    <label for="comment">Comment</label>
+    <input type="text" id="comment" >
+    <button onClick="addcomments()">Comment</button>
+    <ul id="time_stamp"></ul>
+    <script>
+     var usercoment_array=[];
+     var displayComment="";
+    var time_stamp=document.getElementById("time_stamp");
+       function addcomments(){
+           var username=getElement("name");
+        var usercomment=getElement("comment");
+        var date=new Date();
+        var user_comment={
+               first_name:document.getElementById("name").value,
+               Comments: document.getElementById("comment").value,
+               userid:getUniqueid(),
+               month:date.getMonth(),
+               year:date.getFullYear(),
+               commented_date:date.getDate(),
+               seconds:date.getSeconds(),
+               minutes:date.getMinutes(),
+               hours:date.getHours()
+       }
+       console.log(user_comment);
+       usercoment_array.push(user_comment);
+       console.log(usercoment_array);
+       displayTimeStamp();
+       document.getElementById("name").value=" ";
+       document.getElementById("comment").value=" ";
+       }
+   function getElement(id){
+    return document .getElementById(id);
+   }
+   var i=1;
+   function getUniqueid(){
+     return i++;
+   }
+   function timeStamp(userobject){
+   var dat1=new Date();
+        if(dat1.getFullYear()>userobject.year){
+            var time=dat1.getFullYear()-userobject.year;
+            return time+" Years ago";
+        }else if(dat1.getMonth()>userobject.month){
+            var time=dat1.getMonth()-userobject.month;
+            return time+" Months ago";
+        }else if(dat1.getDate()>userobject.commented_date){
+            var time=dat1.getDate()-userobject.commented_date;
+            return time+" Date ago";
+        }else if(dat1.getHours()>userobject.hours){
+            var time=dat1.getHours()-userobject.hours;
+            return time+" Hours ago";
+        }else if(dat1.getMinutes()>userobject.minutes){
+            var time=dat1.getMinutes()-userobject.minutes;
+            return time+" Minutes ago";
+        }else if(dat1.getSeconds()>userobject.seconds){
+            var time=dat1.getSeconds()-userobject.seconds;
+            return time+" Seconds ago";
+        }else {
+            return " ";
+        }
+   }
+   function displayTimeStamp(){
+    console.log(usercoment_array);
+    usercoment_array.forEach(function(value){
+       console.log(value);
+        displayComment=displayComment+"<li>Name :"+value.first_name+"  "+timeStamp(value) +"</li><li> Comment :"+value.Comments;
+   });
+   time_stamp.innerHTML=displayComment;
+   }
+    </script>
+</body>
+</html>

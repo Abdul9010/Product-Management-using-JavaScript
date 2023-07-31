@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    
+        <input type="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVGHL9r9OucwArH8yO3rEDPryG4V3tSCBw-w&usqp=CAU" style=" height: 300px;"><br><br>
+        <input type="text" id="comment" placeholder="Add a Comment here" style="width: 180px;">
+        <button id="ffs" onclick="submit()">Post</button>
+
+ 
+        <p>
+        <ol id="head"></ol>
+        </p>
+ 
+    <script>
+
+        var comments = [];
+        var display = document.getElementById("head");
+        var date = new Date();
+
+        function submit() {
+            event.preventDefault();
+            var commentvar =  document.getElementById("comment").value;
+            var tstamp = {
+               
+                seconds : date.getSeconds(),
+                minutes : date.getMinutes(),
+                hours : date.getHours(),
+                day : date.getDay(),
+                month : date.getMonth(),
+                year : date.getFullYear()
+            }
+
+            console.log(commentvar);
+            
+            comments.push(commentvar);
+            
+            
+            displayed();
+            
+
+
+            
+    
+        }
+
+        function displayed(value) {
+            var pro = "";
+            var i = 0;
+
+            while (i < comments.length) {
+                var comment = comments[i];
+                pro = pro + "<li>" + comment  + "</li>" 
+                i++;
+            }
+            display.innerHTML = pro ;
+        }   
+
+        // function timestap (object){
+        //     var date = new Date();
+        //     if(date.getFullYear()>object.year){
+        //         var time = date.getFullYear() - object.year;
+        //         return time + "years ago";
+        //     }else if(date.getMonth()>object.month){
+        //         var time = date.getMonth() - object.month;
+        //         return time + "months ago";
+        //     }else if(date.getDay()>object.day){
+        //         var time = date.getDay()-object.day;
+        //         return time + "days ago";
+        //     }else if(date.getHours()>object.hours){
+        //         var time = date.getHours()-object.hours;
+        //         return time + "hours ago";
+        //     }else if(date.getMinutes()>object.minutes){
+        //         var time = date.getMinutes()-object.minutes;
+        //         return time + "Minutes ago"
+        //     }else if(date.getseconds()>object.seconds){
+        //         var time = date.getseconds() - object.seconds;
+        //         return time + "seconds ago";
+        //     }else{
+        //         return " ";
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>

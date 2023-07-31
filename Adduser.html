@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <style>
+        div {
+            border: 3px solid;
+            background-color: whitesmoke;
+        }
+
+        p {
+            text-align: center;
+
+        }
+
+        .div1 {
+            background-color: powderblue;
+            width: 62px;
+
+            margin: 7px;
+
+        }
+
+        .div2 {
+
+            background-color: powderblue;
+            width: 45px;
+
+            margin: 7px;
+
+
+        }
+
+        .div3 {
+            background-color: powderblue;
+            width: 45px;
+
+            margin: 7px;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h2>Add User</h2><br>
+        <form id="form" .action="">
+            <p>
+                UserID <input type="email" id="email" placeholder="User ID (Email Id)"><br><br>
+                FirstName <input type="text" id="fname" placeholder="FirstName"><br><br>
+                Lastname <input type="text" id="lname" placeholder="LastName"><br><br>
+            </p>
+        </form>
+        <div class="div1">
+            <button>Activate</button>
+        </div>
+        <div class="div2">
+            <button id="save" onclick="save()">Save</button>
+        </div>
+        <div class="div3">
+            <a href="./Usermanagement1.html">
+                <button>Back</button>
+            </a>
+        </div>
+    </div>
+
+    
+    <script>
+
+
+        function save() {
+            var details = [];
+           var  valuemail =  document.getElementById("email").value;
+            var valuename =  document.getElementById("fname").value;
+           var  valuelanme =  document.getElementById("lname").value;
+
+            var detail = {
+                proid : generateid(),
+                Mail: valuemail,
+                Fullname: valuename,
+                Lastname: valuelanme
+            }
+            var intialid = 0;
+        function generateid() {
+            intialid++;
+            return intialid;
+        }
+            console.log(detail.proid);
+
+           details.push(detail);
+
+            // var keys = Object.values(details);
+            // console.log(keys);
+
+          
+
+
+            // var keyarray = keys.map(function (key){
+            //     return "<td>" + key + "</td>";
+            // });
+            // console.log(keyarray);
+
+            // keyarray = keyarray.toString().replaceAll(",","");
+            // keyarray = "<tr>" + keyarray + "<tr>";
+
+            
+
+            localStorage.setItem('keyarray', JSON.stringify(keys))
+
+
+            // console.log(keyarray);
+            document.getElementById("form").reset();
+        }
+
+
+
+    </script>
+</body>
+
+</html>

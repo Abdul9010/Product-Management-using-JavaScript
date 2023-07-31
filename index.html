@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 style="text-align: center; color: darkmagenta;">Products list</h2>
+    <form id="form" style="text-align: center;">
+        Name <input type="text" id="pname" placeholder="Name" required><br><br>
+        Price <input type="text" id="pprice" placeholder="Price" required><br><br>
+        Description <input type="text" id="pdescription" placeholder="description"  required><br><br>
+        Image <input type="text" id="pimage" placeholder="Image" required><br><br>
+        <button id="addorsave" onclick="Submit()">Submit</button>
+
+        <ol id="prolist" ></ol>
+    </form>
+
+    <script>
+        
+        if (localStorage.getItem('Products') == null){
+            localStorage.setItem('Products', JSON.stringify([]));
+        }
+
+        function Submit() {
+            event.preventDefault();
+
+            var name = valueby("pname");
+            var price = valueby("pprice");
+            var description = valueby("pdescription");
+            var image = valueby("pimage");
+
+            var product = {
+
+                proid: generateid(),
+                name: name,
+                pr: price, 
+                desc: description,
+                img: image
+            }
+            console.log(product);
+            var Products = JSON.pares(localStorage.getItem("Products"));
+            Products.push(product);
+            localStorage.setItem('Products',JSON.stringify(Products));
+            document.getElementById("form").reset();
+            display();
+        }
+
+        function valueby(id) {
+            var value = document.getElementById(id).value;
+            return value;
+        }
+
+        function display() {
+            var index = 0;
+            var list = "";
+
+            while (index < Products.length) {
+                var product = Products[index];
+                list = list + "<li>" + product.name + "&nbsp;&nbsp;&nbsp;" + product.pr + "&nbsp;&nbsp;&nbsp;" + "<img style='width:72px; height:72px' src=" + product.img + ">" + "<button onclick ='deletepro(" + product.proid + ")'>Delete</button>" + "&nbsp;&nbsp;&nbsp;" +"<button onclick ='Uppro(" + product.proid + ")'>Update</button>" + "</li>"
+                index++;
+
+            }
+            document.getElementById("prolist").innerHTML = list;
+        }
+
+        var intialid = 0;
+        function generateid() {
+            intialid++;
+            return intialid;
+        }
+
+        function updatevalue(id, inputvalue) {
+            document.getElementById(id).value = inputvalue;
+        }
+
+        function deletepro(pid) {
+            console.log(pid);
+            var index = 0;
+
+            while (index < Products.length) {
+                var product = Products[index];
+                if (product.proid == pid) {
+                    Products.splice(index, 1);
+                    break;
+                }
+                index++;
+            }
+            display();
+        }
+
+        function Uppro(pid) {
+            event.preventDefault();
+            var index = 0;
+            while (index < Products.length) {
+                var product = Products[index];
+                if (product.proid == pid) {
+                    updatevalue("pname", product.name);
+                    updatevalue("pprice", product.pr);
+                    updatevalue("pdescription", product.desc);
+                    updatevalue("pimage", product.img);
+                }
+                index++;
+            }
+            var addorsave = document.getElementById("addorsave");
+            addorsave.innerHTML = "Save";
+            addorsave.removeAttribute("onclick");
+            addorsave.setAttribute('onclick', "savep(" + pid + ")");
+
+        }
+
+        function savep(pid) {
+            console.log("i am in savep" + pid);
+            event.preventDefault();
+
+            var name = valueby("pname");
+            var price = valueby("pprice");
+            var description = valueby("pdescription");
+            var image = valueby("pimage");
+
+            var index = 0;
+            while (index < Products.length) {
+                var product = Products[index];
+                if (product.proid == pid) {
+                    product.name = name;
+                    product.pr = price;
+                    product.desc = description;
+                    product.img = image;
+                    break;
+                }
+                index++;
+
+            }
+            display();
+
+            var addorsave = document.getElementById("addorsave");
+            addorsave.innerHTML = "Add";
+            addorsave.removeAttribute("onclick");
+            addorsave.setAttribute('onclick', "Submit()");
+            document.getElementById("form").reset();
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
